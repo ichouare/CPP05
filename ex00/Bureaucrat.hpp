@@ -1,12 +1,10 @@
 #ifndef BEREAUCRAT_H
 #define BEREAUCRAT_H
-#include "./GradeTooHighException.hpp"
-#include "./GradeTooLowException.hpp"
 #include <iostream>
+#include <exception>
 
-
-class Bureaucrat: public GradeTooHighException , public  GradeTooLowException
-{
+class Bureaucrat
+{  
     private :
         const std::string m_name;
         int m_grade;
@@ -18,7 +16,16 @@ class Bureaucrat: public GradeTooHighException , public  GradeTooLowException
         int getGrade() const;
         void incrementGrade();
         void decrementGrade();
-
+        class GradeTooHighException : public std::exception 
+        {
+            public:
+                const char *what() const throw();
+        };
+        class GradeTooLowException : public std::exception
+        {
+            public:
+                const char *what() const throw();
+        };
 };
 
 

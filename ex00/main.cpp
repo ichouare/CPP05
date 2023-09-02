@@ -20,7 +20,7 @@ int main()
     }
     catch(std::exception & e)
     {
-        std::cerr << "grad  out of range!" << '\n';
+        std::cerr << e.what() << '\n';
     }
 
     try
@@ -31,7 +31,20 @@ int main()
     }
     catch(std::exception & e)
     {
-         std::cerr << "grad  out of range!" << '\n';
+         std::cerr << e.what() << '\n';
+    }
+
+    try
+    {
+            Bureaucrat E("Dave", -1);
+            Bureaucrat e("Dave", 0);
+            std::cout << e << std::endl;
+            // e.decrementGrade();
+
+    }
+    catch(std::exception & e)
+    {
+         std::cerr << e.what() << '\n';
     }
 
 

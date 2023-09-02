@@ -1,5 +1,5 @@
 #include "./Bureaucrat.hpp"
-
+#include "Bureaucrat.hpp"
 
 Bureaucrat::Bureaucrat():m_name("undefine"),m_grade(0)
 {
@@ -21,6 +21,19 @@ Bureaucrat::~Bureaucrat()
 
 }
 
+Bureaucrat::Bureaucrat(const Bureaucrat& original)
+{
+    *(this) = original;
+}
+
+Bureaucrat& Bureaucrat::operator=(const Bureaucrat &original)
+{
+    if(this == &original)
+        return (*this);
+    this->m_grade = original.m_grade;
+    this->m_name = original.m_name;
+    return (*this);
+}
 std::string Bureaucrat::getName() const 
 {
     return m_name;
@@ -57,6 +70,20 @@ std::ostream& operator<<(std::ostream& flux, const Bureaucrat obj )
     flux << " , bureaucrat grade ";
    flux << obj.getGrade();
    return flux;
+}
 
-    
+const char *Bureaucrat::GradeTooHighException::what() const throw()
+{
+    return "GradeTooHighException: out of range";
+}
+
+const char *Bureaucrat::GradeTooLowException::what() const throw()
+{
+    return "GradeTooLowException: out of range";
+}
+
+
+Bureaucrat::Bureaucrat(const Bureaucrat& original)
+{
+    *this = original;
 }
