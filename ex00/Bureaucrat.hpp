@@ -16,6 +16,8 @@ class Bureaucrat
         int getGrade() const;
         void incrementGrade();
         void decrementGrade();
+        Bureaucrat(const Bureaucrat& original);
+        Bureaucrat& operator=(const Bureaucrat& original);
         class GradeTooHighException : public std::exception 
         {
             public:

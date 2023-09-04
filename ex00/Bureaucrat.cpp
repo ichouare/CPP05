@@ -8,7 +8,7 @@ Bureaucrat::Bureaucrat():m_name("undefine"),m_grade(0)
 
 Bureaucrat::Bureaucrat(std::string m_name, int m_grade):m_name(m_name),m_grade(m_grade)
 {
-    if(m_grade < 0)
+    if(m_grade < 1)
         throw Bureaucrat::GradeTooHighException();
     else if (m_grade > 150)
         throw Bureaucrat::GradeTooLowException();
@@ -21,17 +21,18 @@ Bureaucrat::~Bureaucrat()
 
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat& original)
+Bureaucrat::Bureaucrat(const Bureaucrat& original):m_name(original.getName()),m_grade(original.getGrade())
 {
-    *(this) = original;
+
 }
 
 Bureaucrat& Bureaucrat::operator=(const Bureaucrat &original)
 {
     if(this == &original)
         return (*this);
+    
     this->m_grade = original.m_grade;
-    this->m_name = original.m_name;
+    // this->m_name = original.m_name;
     return (*this);
 }
 std::string Bureaucrat::getName() const 
@@ -48,7 +49,7 @@ int Bureaucrat::getGrade() const
 void Bureaucrat::incrementGrade()
 {
     m_grade++;
-     if(m_grade < 0)
+     if(m_grade < 1)
         throw Bureaucrat::GradeTooHighException();
     else if (m_grade > 150)
         throw Bureaucrat::GradeTooLowException();
@@ -57,7 +58,7 @@ void Bureaucrat::incrementGrade()
 void Bureaucrat::decrementGrade()
 {
     m_grade--;
-     if(m_grade < 0)
+     if(m_grade < 1)
         throw Bureaucrat::GradeTooHighException();
     else if (m_grade > 150)
              throw Bureaucrat::GradeTooLowException();
@@ -83,7 +84,3 @@ const char *Bureaucrat::GradeTooLowException::what() const throw()
 }
 
 
-Bureaucrat::Bureaucrat(const Bureaucrat& original)
-{
-    *this = original;
-}

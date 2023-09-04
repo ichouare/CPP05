@@ -6,6 +6,8 @@
 #include <string>
 #include <exception>
 #include "./Bureaucrat.hpp"
+
+class Bureaucrat;
 class Form {
     public:
     Form();
@@ -14,11 +16,10 @@ class Form {
     Form& operator=(const Form& original);
     ~Form();
     std::string getName() const;
-    bool getSignal()const;
-    int getSignalSign() const;
-    int getSignalExecute() const;
-    void beSigne(Bureaucrat obj);
-
+    bool getSigned()const;
+    int getSignGrade() const;
+    int getExecuteGrade() const;
+    void beSigned(Bureaucrat& obj);
     class GradeTooHighException : public std::exception 
         {
             public:
@@ -31,12 +32,12 @@ class Form {
         };
     private:
         const std::string m_name;
-        bool m_signal;
-        const int m_grade_sign;
+        bool m_signed;
+        const int m_grade_signed;
         const int m_grade_execute;
 
 };
 
 
-std::ostream & operator<<(std::ostream &flux, const Form obj);
+std::ostream & operator<<(std::ostream &flux, const Form& obj);
 #endif

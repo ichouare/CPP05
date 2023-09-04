@@ -39,7 +39,7 @@ class AForm {
             };
     private:
         const  std::string m_name;
-        bool m_signed;
+        bool    m_signed;
         const  int m_grade_signed;
         const  int m_grade_execute;
 
