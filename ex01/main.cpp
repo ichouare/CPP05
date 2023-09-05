@@ -8,9 +8,8 @@ int main()
 
     // std::cout << form.getSignal() << std::endl;
    try {
-        Bureaucrat bureaucrat("ash",9);
+        Bureaucrat bureaucrat("ash",11);
         Form form("formName", 10, 15);
-        form.beSigned(bureaucrat);
         bureaucrat.signForm(form);
 
         //std::cout << form << std::endl;

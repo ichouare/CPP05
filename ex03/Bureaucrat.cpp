@@ -1,6 +1,6 @@
 #include "./Bureaucrat.hpp"
 
-Bureaucrat::Bureaucrat():m_name("undefine"),m_grade(0)
+Bureaucrat::Bureaucrat():m_name("undefine"),m_grade(1)
 {
 
 }
@@ -58,7 +58,7 @@ void Bureaucrat::decrementGrade()
     if(m_grade < 1)
         throw Bureaucrat::GradeTooHighException();
     else if (m_grade > 150)
-             throw Bureaucrat::GradeTooLowException();
+        throw Bureaucrat::GradeTooLowException();
 }
 
 std::ostream& operator<<(std::ostream& flux, const Bureaucrat obj )
@@ -81,15 +81,18 @@ const char *Bureaucrat::GradeTooLowException::what() const throw()
 }
 
 
-void Bureaucrat::signForm(const AForm& obj)
+void Bureaucrat::signForm(AForm& obj)
 {
-    if(obj.getSigned() == true)
+    if(obj.getSigned() == false)
+    {
+        obj.beSigned(*this);
         std::cout << *this << " signed " << obj << std::endl;
+    }
     else
         std::cout << *this << " couldn’t sign" << obj  <<std::endl;
 }
 
-void Bureaucrat::executeForm(AForm const & form)
+void Bureaucrat::executeForm(AForm const& form)
 {
     try
     {
@@ -97,6 +100,6 @@ void Bureaucrat::executeForm(AForm const & form)
         std::cout << *this << " executed" << form << std::endl;
     }catch(std::exception &e)
     {
-         std::cout << *this << " not exectude"  << "because" << e.what() <<  std::endl;
+         std::cout << *this << " not exectude"  << "because " << e.what() <<  std::endl;
     }
 }

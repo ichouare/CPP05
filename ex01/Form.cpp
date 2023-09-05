@@ -14,10 +14,10 @@ Form::~Form()
 
 Form::Form(std::string m_name, int m_grade_signed, int m_grade_execute):m_name(m_name),m_signed(false),m_grade_signed(m_grade_signed),m_grade_execute(m_grade_execute)
 {
-   if(m_grade_signed < 1 || m_grade_execute < 1)
-    Form::GradeTooHighException();
+   if (m_grade_signed < 1 || m_grade_execute < 1)
+        throw Form::GradeTooHighException();
     else if(m_grade_signed > 150 || m_grade_execute > 150)
-        Form::GradeTooLowException();
+        throw  Form::GradeTooLowException();
 }
 
 Form::Form(const Form& original):m_name(original.getName()),m_signed(false),m_grade_signed(original.getSignGrade()),m_grade_execute(original.getExecuteGrade())
@@ -60,10 +60,10 @@ int Form::getExecuteGrade() const
 
 void Form::beSigned(Bureaucrat& obj)
 {   
-        if(obj.getGrade() <= this->m_grade_signed)
-            this->m_signed = true;
-        else
-            Form::GradeTooLowException();
+    if(obj.getGrade() <= this->m_grade_signed)
+        this->m_signed = true;
+    else
+       throw Form::GradeTooLowException();
 }
 
 const char *Form::GradeTooHighException::what() const throw()
@@ -81,10 +81,7 @@ std::ostream& operator<<(std::ostream& flux, const Form& obj )
 {
    flux << obj.getName();
     flux << " , Form status: ";
-    if(obj.getSigned() == 1)
-            flux <<  "True";
-    else
-        flux << "False";
+    flux << obj.getSigned();
    flux << " grade required to sign it ";
    flux << obj.getSignGrade();
    flux << " grade required to execute it ";

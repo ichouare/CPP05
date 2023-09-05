@@ -30,7 +30,7 @@ const RobotomyRequestForm& RobotomyRequestForm::operator=(const RobotomyRequestF
 }
 
 
-void RobotomyRequestForm::execute(Bureaucrat const & executor) const
+void RobotomyRequestForm::execute(Bureaucrat const &executor) const
 {
     if(this->getSigned() == false)
         throw RobotomyRequestForm::NotSignedException();
@@ -63,6 +63,14 @@ std::string RobotomyRequestForm::getTarget() const
 
 std::ostream &operator<<(std::ostream &flux, const RobotomyRequestForm& obj)
 {
+     flux << obj.getName();
+    flux << " , Form status: ";
+    flux << obj.getSigned();
+   flux << " grade required to sign it ";
+   flux << obj.getSignGrade();
+   flux << " grade required to execute it ";
+   flux << obj.getExecuteGrade(); 
+   flux << "Form target : ";
     flux << obj.getTarget();
     return flux;
 }

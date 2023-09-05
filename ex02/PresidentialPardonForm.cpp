@@ -51,6 +51,14 @@ std::string PresidentialPardonForm::getTarget() const
 
 std::ostream &operator<<(std::ostream &flux, const PresidentialPardonForm& obj)
 {
+    flux << obj.getName();
+    flux << " , Form status: ";
+    flux << obj.getSigned();
+   flux << " grade required to sign it ";
+   flux << obj.getSignGrade();
+   flux << " grade required to execute it ";
+   flux << obj.getExecuteGrade(); 
+   flux << "Form target : ";
     flux << obj.getTarget();
     return flux;
 }

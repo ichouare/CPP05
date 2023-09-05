@@ -85,10 +85,13 @@ const char *Bureaucrat::GradeTooLowException::what() const throw()
 }
 
 
-void Bureaucrat::signForm(const Form& obj)
+void Bureaucrat::signForm(Form& obj)
 {
-    if(obj.getSigned() == true)
+    if(obj.getSigned() == false)
+    {
+        obj.beSigned(*this);
         std::cout << *this << " signed " << obj << std::endl;
+    }
     else
         std::cout << *this << " couldn’t sign" << obj  <<std::endl;
 }

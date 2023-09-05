@@ -2,7 +2,7 @@
 #include "AForm.hpp"
 
 
-AForm::AForm():m_name("anonyme"),m_signed(false),m_grade_signed(0),m_grade_execute(0)
+AForm::AForm():m_name("anonyme"),m_signed(false),m_grade_signed(1),m_grade_execute(1)
 {
 
 }
@@ -15,9 +15,9 @@ AForm::~AForm()
 AForm::AForm(std::string m_name, int m_grade_signed, int m_grade_execute):m_name(m_name),m_signed(false),m_grade_signed(m_grade_signed),m_grade_execute(m_grade_execute)
 {
     if(m_grade_execute <  1 || m_grade_execute < 1)
-        AForm::GradeTooHighException();
+        throw  AForm::GradeTooHighException();
     else if(m_grade_execute > 150 || m_grade_execute > 150)
-        AForm::GradeTooLowException();
+        throw AForm::GradeTooLowException();
 }
 
 AForm::AForm(const AForm& original):m_name(original.getName()),m_signed(original.getSigned()),m_grade_signed(original.getSignGrade()),m_grade_execute(original.getExecuteGrade())
@@ -56,10 +56,10 @@ int AForm::getExecuteGrade() const
 
 void AForm::beSigned(Bureaucrat obj)
 {
-        if (obj.getGrade()  >= 1 && obj.getGrade() <= this->m_grade_signed)
+        if (obj.getGrade() <= this->m_grade_signed)
             this->m_signed = true;
         else
-            AForm::GradeTooLowException();
+            throw AForm::GradeTooLowException();
 }
 
 const char *AForm::GradeTooHighException::what() const throw()
@@ -83,9 +83,9 @@ std::ostream& operator<<(std::ostream& flux, const AForm& obj )
    flux << obj.getName();
     flux << " , AForm status: ";
    flux << obj.getSigned();
-   flux << "grade required to sign it";
+   flux << "grade required to sign it ";
    flux << obj.getSignGrade();
-   flux << "grade required to execute it";
+   flux << "grade required to execute it ";
    flux << obj.getExecuteGrade();
    flux << std::endl;
    return flux;

@@ -39,18 +39,18 @@ void RobotomyRequestForm::execute(Bureaucrat const & executor) const
     else
     {
 
-    std::cout << "          /   .-\"Hb_,--\"\"dF      /" << std::endl;
-    std::cout << "        ,\'       _Hb ___dF\"-._,-'" << std::endl;
-    std::cout << "      ,'      _,-\"\"\"\"   \"\"--..__" << std::endl;
-    std::cout << "     (     ,-'                  `." << std::endl;
-    std::cout << "      `._,'     _   _             ;" << std::endl;
-    std::cout << "       ,'     ,' `-'Hb-.___..._,-'" << std::endl;
-    std::srand(time(0)); // use current time as seed for random generator
-    int random_variable = std::rand() ;
-    if(random_variable % 2)
-         std::cout << m_target << "has been robotomized successfully 50% of the time." << std::endl;
-    else
-        std::cout << m_target << "robotomy failed" << std::endl;
+        std::cout << "          /   .-\"Hb_,--\"\"dF      /" << std::endl;
+        std::cout << "        ,\'       _Hb ___dF\"-._,-'" << std::endl;
+        std::cout << "      ,'      _,-\"\"\"\"   \"\"--..__" << std::endl;
+        std::cout << "     (     ,-'                  `." << std::endl;
+        std::cout << "      `._,'     _   _             ;" << std::endl;
+        std::cout << "       ,'     ,' `-'Hb-.___..._,-'" << std::endl;
+        std::srand(time(0)); // use current time as seed for random generator
+        int random_variable = std::rand() ;
+        if(random_variable % 2)
+            std::cout << m_target << "has been robotomized successfully 50% of the time." << std::endl;
+        else
+            std::cout << m_target << "robotomy failed" << std::endl;
     }
 
 }
@@ -63,6 +63,15 @@ std::string RobotomyRequestForm::getTarget() const
 
 std::ostream &operator<<(std::ostream &flux, const RobotomyRequestForm& obj)
 {
+
+     flux << obj.getName();
+    flux << " , Form status: ";
+    flux << obj.getSigned();
+   flux << " grade required to sign it ";
+   flux << obj.getSignGrade();
+   flux << " grade required to execute it ";
+   flux << obj.getExecuteGrade(); 
+   flux << "Form target : ";
     flux << obj.getTarget();
     return flux;
 }

@@ -37,8 +37,8 @@ int main()
     try
     {
             Bureaucrat E("Dave", -1);
-            Bureaucrat e("Dave", 0);
-            std::cout << e << std::endl;
+            // Bureaucrat e("Dave", 0);
+            // std::cout << e << std::endl;
             // e.decrementGrade();
 
     }

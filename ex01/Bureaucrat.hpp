@@ -20,7 +20,7 @@ class Bureaucrat
         void decrementGrade();
         Bureaucrat(const Bureaucrat& original);
         Bureaucrat& operator=(const Bureaucrat& original);
-        void signForm(const Form& obj);
+        void signForm(Form& obj);
         class GradeTooHighException : public std::exception 
         {
             public:
