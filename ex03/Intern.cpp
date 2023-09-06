@@ -48,8 +48,15 @@ AForm* Intern::makeForm(std::string name, std::string target)
        form =  new ShrubberyCreationForm(target);
         break;
     default:
+        throw Intern::NotfoundName();
         break;
     };
     return form;
+}
+
+
+const char * Intern::NotfoundName::what()  const throw()
+{
+     return "NotfoundName: this name not found could you change  the name. Thanks ";
 }
 

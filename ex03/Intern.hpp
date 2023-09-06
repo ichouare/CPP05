@@ -13,6 +13,11 @@ class Intern
         Intern(const Intern& original);
         Intern& operator=(const Intern& original);
         AForm *makeForm(std::string name, std::string target);
+        class NotfoundName : public std::exception 
+            {
+                public:
+                    const char *what() const throw();
+            };
 };
 
 #endif 

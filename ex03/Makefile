@@ -2,7 +2,7 @@ NAME = Exception
 
 FLAG =  c++
 
-FLAGS =  -Wall -Wextra -Werror -std=c++98
+FLAGS =  -Wall -Wextra -Werror -std=c++98 #-g -fsanitize=address
  
 HEADER =  ./Bureaucrat.hpp ./AForm.hpp  ./PresidentialPardonForm.hpp ./RobotomyRequestForm.hpp ./ShrubberyCreationForm.hpp ./Intern.hpp
 

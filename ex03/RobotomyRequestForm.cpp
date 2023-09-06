@@ -32,6 +32,7 @@ const RobotomyRequestForm& RobotomyRequestForm::operator=(const RobotomyRequestF
 
 void RobotomyRequestForm::execute(Bureaucrat const &executor) const
 {
+
     if(this->getSigned() == false)
         throw RobotomyRequestForm::NotSignedException();
     else if(executor.getGrade() > this->getExecuteGrade())

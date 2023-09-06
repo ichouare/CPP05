@@ -8,25 +8,26 @@ void test()
 {
     system("leaks Exception");
 }
+
 int main()
 {
-    // atexit(test);
-    AForm* rrf;
+        AForm* rrf = NULL;
     try
     {
-        Bureaucrat b("dave", 15);
+        Bureaucrat b("dave", 40);
         Intern someRandomIntern;
-        rrf = someRandomIntern.makeForm("presidential pardon", "Bender");
-        if(rrf)
-        {
-            b.signForm(*rrf);
-            rrf->execute(b);
-        }
+        rrf = someRandomIntern.makeForm("robotomy request", "Bender");
+        b.signForm(*rrf);
+        rrf->execute(b);
+        delete rrf;
     }
     catch (std::exception & e)
     {
+        delete rrf;
         std::cout << e.what() << std::endl;
     }
-    delete rrf;
+    puts("hete");
+    atexit(test);
+    // if(rrf)
     return 0;
 }

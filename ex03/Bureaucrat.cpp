@@ -63,11 +63,10 @@ void Bureaucrat::decrementGrade()
 
 std::ostream& operator<<(std::ostream& flux, const Bureaucrat obj )
 {
-   
-   flux << obj.getName();
+    flux << obj.getName();
     flux << " , bureaucrat grade ";
-   flux << obj.getGrade();
-   return flux;
+    flux << obj.getGrade();
+    return flux;
 }
 
 const char *Bureaucrat::GradeTooHighException::what() const throw()
@@ -83,13 +82,17 @@ const char *Bureaucrat::GradeTooLowException::what() const throw()
 
 void Bureaucrat::signForm(AForm& obj)
 {
-    if(obj.getSigned() == false)
+    try
     {
-        obj.beSigned(*this);
-        std::cout << *this << " signed " << obj << std::endl;
+        if(obj.getSigned() == false)
+        {
+            obj.beSigned(*this);
+            std::cout << *this << " signed " << obj << std::endl;
+        }
+    }catch(std::exception &e)
+    {
+        std::cout << *this << " couldn’t sign " << obj << "because " << e.what() <<std::endl;
     }
-    else
-        std::cout << *this << " couldn’t sign" << obj  <<std::endl;
 }
 
 void Bureaucrat::executeForm(AForm const& form)

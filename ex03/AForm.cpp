@@ -80,13 +80,13 @@ const char *AForm::NotSignedException::what() const throw()
 
 std::ostream& operator<<(std::ostream& flux, const AForm& obj )
 {
-   flux << obj.getName();
+    flux << obj.getName();
     flux << " , AForm status: ";
-   flux << obj.getSigned();
-   flux << "grade required to sign it ";
-   flux << obj.getSignGrade();
-   flux << "grade required to execute it ";
-   flux << obj.getExecuteGrade();
-   flux << std::endl;
-   return flux;
+    flux << obj.getSigned();
+    flux << "grade required to sign it ";
+    flux << obj.getSignGrade();
+    flux << "grade required to execute it ";
+    flux << obj.getExecuteGrade();
+    flux << std::endl;
+    return flux;
 }
